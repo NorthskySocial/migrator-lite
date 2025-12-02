@@ -1,0 +1,400 @@
+/* Liberally copying the CSS from migration-fe to match the presentation */
+@import url("https://cdn.jsdelivr.net/npm/@fontsource-variable/museomoderno@5.2.7/index.min.css");
+@import url("https://cdn.jsdelivr.net/npm/@fontsource-variable/geist@5.2.6/index.min.css");
+
+:root {
+    /* Chakra-inspired dark theme colors */
+    --chakra-colors-bg: #1F0B35;;
+    --chakra-colors-bg-subtle: rgba(45, 55, 72, 0.6);
+    --chakra-colors-bg-card: rgba(26, 32, 44, 0.75);
+    --chakra-colors-border: rgba(255, 255, 255, 0.16);
+    --chakra-colors-text: rgba(255, 255, 255, 0.92);
+    --chakra-colors-text-muted: rgba(255, 255, 255, 0.64);
+    --chakra-colors-accent: #646cff;
+    --chakra-colors-accent-emphasis: #535bf2;
+    --chakra-colors-teal-600: #0d9488;
+    --chakra-colors-error: #fc8181;
+    --chakra-colors-success: #38b2ac;
+    
+
+    font-family: "Geist Variable", system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color-scheme: dark;
+    color: var(--chakra-colors-text);
+    
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+    background-image: url('/Northsky-Background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    
+}
+
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "MuseoModerno Variable", sans-serif;
+    color: #9A3BEC;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 3.75rem; /* Chakra size="3xl" */
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.875rem; /* Chakra size="xl" */
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: var(--chakra-colors-text);
+}
+
+a {
+    font-weight: 500;
+    color: var(--chakra-colors-accent);
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--chakra-colors-accent-emphasis);
+}
+
+/* Container - Chakra Container maxWidth="4xl" (1152px) */
+.container {
+    max-width: 1152px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    text-align: center;
+    background-color: var(--chakra-colors-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Logo styling */
+.logo-image {
+    height: 150px;
+    margin: 0 0 2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Attribution styling */
+.made-by-blur {
+    font-size: 0.9em;
+    color: var(--chakra-colors-text-muted);
+    margin-bottom: 1.5rem;
+}
+
+/* Form sections with increased spacing */
+.section {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--chakra-colors-text);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.625rem 1rem;
+    box-sizing: border-box;
+    background-color: var(--chakra-colors-bg-card);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--chakra-colors-border);
+    border-radius: 0.375rem;
+    color: var(--chakra-colors-text);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--chakra-colors-accent);
+    box-shadow: 0 0 0 1px var(--chakra-colors-accent);
+}
+
+/* Button styling - Chakra buttons */
+button {
+    border-radius: 0.375rem;
+    border: 1px solid var(--chakra-colors-border);
+    padding: 0.625rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    background-color: var(--chakra-colors-bg-card);
+    backdrop-filter: blur(10px);
+    color: var(--chakra-colors-text);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+button:hover {
+    background-color: var(--chakra-colors-bg-subtle);
+    border-color: var(--chakra-colors-accent);
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:focus,
+button:focus-visible {
+    outline: 2px solid var(--chakra-colors-accent);
+    outline-offset: 2px;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Responsive video container */
+iframe {
+    max-width: 100%;
+    border-radius: 0.375rem;
+}
+
+/* Error and status messages */
+.error-message {
+    color: var(--chakra-colors-error);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+    background-color: rgba(252, 129, 129, 0.1);
+    border-radius: 0.375rem;
+    border-left: 3px solid var(--chakra-colors-error);
+}
+
+.status-message {
+    display: block;
+    margin: 1.5rem auto;
+    padding: 1rem 1.5rem;
+    background-color: var(--chakra-colors-teal-600);
+    color: white;
+    border-radius: 0.375rem;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Checkbox styling */
+.form-checkbox {
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1.5;
+    display: grid;
+    grid-template-columns: 0.5em auto;
+    gap: 0.75em;
+    align-items: start;
+}
+
+.checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.form-control {
+    margin-bottom: 0.75rem;
+}
+
+.form-control label {
+    display: flex;
+    align-items: start;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.form-control input[type="checkbox"] {
+    width: auto;
+    margin-top: 0.25rem;
+    cursor: pointer;
+}
+
+/* Left align the advance options section */
+div[x-show="showAdvance"].section {
+    text-align: left;
+}
+
+/* Code blocks and inline code */
+code {
+    background-color: var(--chakra-colors-bg-card);
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9em;
+    color: var(--chakra-colors-accent);
+}
+
+pre {
+    background-color: var(--chakra-colors-bg-card);
+    padding: 1rem;
+    border-radius: 0.375rem;
+    overflow-x: auto;
+    border: 1px solid var(--chakra-colors-border);
+}
+
+pre code {
+    background-color: transparent;
+    padding: 0;
+    color: var(--chakra-colors-text);
+}
+
+/* List styling for info pages */
+ol, ul {
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+/* Navigation elements */
+nav {
+    margin: 1.5rem 0;
+}
+
+nav ol {
+    list-style-type: decimal;
+}
+
+/* Section styling for content pages */
+section {
+    margin: 2rem 0;
+}
+
+/* Form wrapper */
+form {
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (max-width: 960px) {
+    .container {
+        max-width: 768px;
+        padding: 1.5rem 1rem;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    button {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        padding: 1rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.25rem;
+    }
+    
+    .logo-image {
+        height: 120px;
+    }
+    
+    iframe {
+        height: 200px;
+    }
+    
+    button {
+        width: 100% !important;
+        min-width: 100% !important;
+    }
+    
+    /* Mobile responsive background */
+    html {
+        background-size: contain !important;
+        background-attachment: scroll !important;
+    }
+}

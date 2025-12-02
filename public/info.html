@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/png" href="/Northsky-IconCentered-Color.png"/>
+    <meta property="og:description" content="Northsky Migration Tool - Account Migration Information"/>
+    <meta property="og:image" content="/Northsky-IconCentered-Color.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>Migration Information</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="logo-image">
+        <img src="/Northsky-IconCentered-Color.png" alt="Northsky" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+    </div>
+    
+    <h1><a href="/">Account Migration Tool</a></h1>
+    
+    <div class="made-by-blur">Powered by <a href="https://github.com/bluesky-social/pds" target="_blank">pds-moover</a>
+    </div>
+    <div class="section" id="top">
+        <p> This page is to help you decide if you want to use this migration tool to move your ATProto (Bluesky) account to a new
+            PDS.
+            One way or the other. TLDR (You should still read the whole thing), at least read and follow the <a
+                    href="#precautions">precautions section</a>.</p>
+
+
+        <section class="section" style="text-align:left">
+            <h2>Info</h2>
+            <p>This is a no frills PDS account migration tool. Meaning you will find few bells and whistles to
+                simplify the process and hopefully allow more successful account migrations for most users. The creator
+                or host of this tool will not be able to help you recover your account if something goes wrong. So be
+                advised you and your PDS admin may be on your own besides helpful answers and understand the risk you
+                take in doing an account movement. The tool has been tested, and it has worked well, but it is still
+                important to understand this. If you follow <a
+                        href="#precautions">precautions section</a> this will also greatly increase the odds of
+                recovering from any issues. You will still need to have some know how, but it is very possible with a
+                backup rotation key and backup of your account. I also recommend trying out an alt before you do your
+                main account so you know what to expect.</p>
+        </section>
+
+
+        <nav aria-label="Table of contents" class="section" style="text-align:left">
+            <h3>Table of contents</h3>
+            <ol>
+                <li><a href="#precautions">Precautions</a></li>
+                <li><a href="#cant-login">I can't log in?/Says my account is deactivated?</a></li>
+                <li><a href="#invalid-handle">My account says Invalid Handle?</a></li>
+                <li><a href="#help">!!!!!HELP!!!!!</a></li>
+                <li><a href="#why">Why doesn't this tool have xyz?</a></li>
+                <li><a href="#done">Alright account migrated, now what?</a></li>
+                <li><a href="#slow">Why is it so SLOW?</a></li>
+                <li><a href="#open-source">Can I check out the code anywhere?</a></li>
+            </ol>
+        </nav>
+
+        <section id="precautions" class="section" style="text-align:left">
+            <h2>Precautions</h2>
+            <p>Before you even run the migration tool I STRONGLY suggest you add a rotation key and have a back up of your repo
+                and blobs. With both of these you are not guarantee a full recovery if something goes wrong. But it will
+                greatly increase your odds.</p>
+            <h3>Rotation Key Backup</h3>
+            <p>I recommend using <a href="https://atpairport.com/ticket-booth">atpairport.com</a> to add a new rotation
+                key to your PLC. or you can follow <a href="https://whtwnd.com/bnewbold.net/3lj7jmt2ct72r">this blog
+                    post</a> to do it with goat. This migration tool will not use this rotation key at this time, but if
+                something happens, it helps to have this in the meantime.
+            <p>
+            <h3>Repo & Blob backup</h3>
+
+            <p>I also recommend taking a back up of your account with <a href="https://boat.kelinci.net/">boat</a>. You
+                want to <a href="https://boat.kelinci.net/repo-export">"Export repository"</a> and <a
+                        href="https://boat.kelinci.net/blob-export">"Export
+                    blobs"</a>. Both just take your
+                current handle and download those exports to your computer. These are your posts, pictures, and videos.
+            </p>
+        </section>
+
+        <section id="cant-login" class="section" style="text-align:left">
+            <h2>I can't log in?/Says my account is deactivated?</h2>
+            <p>When you move to a non Bluesky PDS you have to do an extra step on login.</p>
+            <ol>
+                <li>On the Sign in screen for <a href="https://bsky.app">bsky.app</a> or on the app click the top input
+                    titled "Hosting provider" and has a globe icon and says Bluesky Social"
+                </li>
+                <li>Click the tab labeled custom</li>
+                <li>In the input for server address you put the same URL you used for the new PDS URL with the https://
+                    like so <code>https://example.com</code></li>
+                <li>Click done and enter your new handle(or email) and password</li>
+            </ol>
+        </section>
+
+        <section id="invalid-handle" class="section" style="text-align:left">
+            <h2>My account says Invalid Handle?</h2>
+            <p>It's a bit of a bug sometimes. I'm not sure what causes it, but usually mentioning your handle in a post
+                or reply fixes it.
+                Like <code>@fullhandle.newpds.com</code>, may or may not highlight it blue and autofill it but make sure
+                you have the
+                full handle and the @ like that. Can also check your handle with the <a
+                        href="https://bsky-debug.app/handle">Bluesky Debug Page</a>. If you see green, and it says one
+                of
+                them pass you should be fine and just may take a while to update.</p>
+        </section>
+
+        <section id="help" class="section" style="text-align:left">
+            <h2>!!!!!HELP!!!!!</h2>
+            <p>If you're having issues with the migration tool first of all, I'm very sorry. I have tested this to the best of
+                my
+                ability, but PDS migrations do come with risks. I would recommend getting with the owner of the PDS and
+                seeing where the account stands with tools like <a href="https://pdsls.dev">pdsls</a>.</p>
+
+            <p> The tool is designed to be able to be re ran IF you set the Advance Options flags.For example, lets say
+                if it created the account, repo is there but some blobs are missing. You can uncheck everything but
+                "Migrate Missing Blobs", "Migrate Prefs", and "Migrate PLC record" and it will pick up after the account
+                repo migration. It is odd in the fact that all the fields are required. That's just to cut down on logic
+                to hopefully cut down on bugs. If you don't ever see the "Please enter your PLC Token" and enter the
+                token sent to your email, you can just
+                forget about it and call it a day if it's too much. Your old account is still active and working.</p>
+        </section>
+
+
+        <section id="why" class="section" style="text-align:left">
+            <h2>Why doesn't this tool have xyz?</h2>
+            <p>This migration tool was designed to pretty much be the goat account migration with a UI. Like in this <a
+                    href="https://whtwnd.com/bnewbold.net/3l5ii332pf32u"> post</a>. Keeping it simple and hard fails if
+                anything
+                goes wrong
+                to
+                hopefully cover most use cases. Rule of thumb if reading the goat migration blog post makes you nervous,
+                you may not want to move to a new PDS with this tool till it has been battle tested.</p>
+        </section>
+
+        <section id="done" class="section" style="text-align:left">
+            <h2>Alright account migrated, now what?</h2>
+            <p>Welcome to your new PDS! I recommend now re running the steps in <a
+                    href="#precautions">precautions section</a> along with keeping regular backups of your account. With
+                the rotation key and backups you can almost always recover even if your new PDS disappears overnight. It
+                may take a bit of know how, but it is very possible.</p>
+        </section>
+
+        <section id="slow" class="section" style="text-align:left">
+            <h2>Why is it so SLOW?</h2>
+            <p>Everything happens client side, and the blob uploads take a while. Nothing runs in parallel. Blob uploads
+                happen one at a time; once one is done, the next goes. This is done just to keep it as simple as
+                possible and to hopefully limit the chance of failures on uploads. My personal account takes about
+                20-30ish mins to move with 1,700ish blobs at 800mb on a 1gig internet connection.</p>
+        </section>
+
+        <section id="open-source" class="section" style="text-align:left">
+            <h2>Can I check out the code anywhere?</h2>
+            <p>Yep! This migration tool is based on the open source pds-moover project. You can find the original code on <a
+                    href="https://tangled.sh/@baileytownsend.dev/pds-moover">tangled.sh</a>. Also, if you're a
+                developer,
+                and you want to fork the code for a new UI, the migration logic is all in one js file. Just take it and
+                its dependencies and have at it.</p>
+        </section>
+    </div>
+
+</div>
+
+</body>
+</html>
