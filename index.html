@@ -127,9 +127,11 @@
     </div>
     
     <h1 id="heading">Sign Up to Northsky</h1>
+    <section>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/wKPBH8j5HDM?si=MfCcTJKBQMQxu38l" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </section>
+    
     <h2>The Northsky Social team welcomes you to join us in safer skies.</h2>
-    <div class="made-by-blur">Powered by <a href="https://tangled.org/baileytownsend.dev/pds-moover" target="_blank">pds-moover</a>
-    </div>
     
     <a href="/info.html">Learn more about account migrations</a>
     <form x-show="!askForPlcToken" id="moover-form" @submit.prevent="await handleSubmit()">
@@ -177,7 +179,7 @@
             </div>
         </div>
         <div class="form-group">
-            <button type="button" @click="toggleAdvanceMenu()" id="advance" name="advance">Advance Options
+            <button type="button" @click="toggleAdvanceMenu()" id="advance" name="advance">Advanced Options
             </button>
         </div>
         <div x-show="showAdvance" class="section" style="padding-bottom: 10px;">
@@ -269,6 +271,13 @@
             </div>
         </form>
     </div>
+    <footer>
+        <div class="made-by-blur"><a href="https://leaflet.pub/2191cd16-e793-4dd8-95ff-c6b02e89bb6a" target="_blank">Northsky Migration FAQ</a></div>
+        <div class="made-by-blur"><a href="mailto:support@northskysocial.com">Contact Support</a></div>
+        <div class="made-by-blur">Powered by <a href="https://tangled.org/baileytownsend.dev/pds-moover" target="_blank">pds-moover</a>
+        </div>
+    </footer>
+     
 </div>
 
 
