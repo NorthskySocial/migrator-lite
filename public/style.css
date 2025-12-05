@@ -332,11 +332,16 @@ section {
     margin: 2rem 0;
 }
 
+footer {
+    margin: 4rem 0 2rem 0;
+}
+
 /* Form wrapper */
 form {
     width: 100%;
     max-width: 600px;
 }
+
 
 /* Responsive design */
 @media (max-width: 1200px) {
