@@ -55,16 +55,12 @@
 
         <section id="precautions" class="section" style="text-align:left">
             <h2>Precautions</h2>
-            <p>Before you even run the migration tool I STRONGLY suggest you add a rotation key and have a back up of your repo
-                and blobs. With both of these you are not guarantee a full recovery if something goes wrong. But it will
-                greatly increase your odds.</p>
-            <h3>Rotation Key Backup</h3>
-            <p>I recommend using <a href="https://atpairport.com/ticket-booth">atpairport.com</a> to add a new rotation
-                key to your PLC. or you can follow <a href="https://whtwnd.com/bnewbold.net/3lj7jmt2ct72r">this blog
-                    post</a> to do it with goat. This migration tool will not use this rotation key at this time, but if
-                something happens, it helps to have this in the meantime.
-            <p>
-            <h3>Repo & Blob backup</h3>
+            <p>Before you even run the migration tool I STRONGLY suggest you add a PLC rotation key and have a back up of your repo
+                and blobs. With both of these you are not guaranteed a full recovery if something goes wrong. But it will
+                greatly increase your odds. If you keep the checkbox checked on the form, a rotation key will automatically be created for you.
+            </p>
+            
+            <h2>Repo & Blob backup</h2>
 
             <p>I also recommend taking a back up of your account with <a href="https://boat.kelinci.net/">boat</a>. You
                 want to <a href="https://boat.kelinci.net/repo-export">"Export repository"</a> and <a
@@ -83,7 +79,7 @@
                 </li>
                 <li>Click the tab labeled custom</li>
                 <li>In the input for server address you put the same URL you used for the new PDS URL with the https://
-                    like so <code>https://example.com</code></li>
+                    like so <code>https://northsky.social</code></li>
                 <li>Click done and enter your new handle(or email) and password</li>
             </ol>
         </section>

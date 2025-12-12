@@ -193,7 +193,7 @@
             <div class="form-control">
                 <label>
                     <input type="checkbox" id="generateRotationKey" name="generateRotationKey" x-model="generateRotationKey">
-                    Generate rotation key (recovery key)
+                    Generate PLC rotation key (recovery key)
                 </label>
             </div>
         </div>
@@ -274,7 +274,7 @@
         </div>
     </form>
     <div x-show="askForPlcToken && !done" class="section">
-        <h2>Please enter your PLC Token you received in an email</h2>
+        <h2>Please enter the PLC Token you received in an email</h2>
         <form @submit.prevent="await signPlcOperation()">
             <div class="form-group">
                 <label for="plc-token">PLC Token:</label>
@@ -287,12 +287,12 @@
         </form>
     <div x-show="done" class="section">
         <h2>Migration Complete!</h2>
-        <div class="status-message">Congratulations! You have successfully migrated to a new PDS! Remember to use
-                your new PDS URL under "Hosting provider" when logging in on Bluesky. Can find more detail information
+        <div class="status-message">Congratulations! You have successfully migrated to Northsky Social! 
+            Remember to use https://northsky.social under "Hosting provider" when logging in on Bluesky. You can find more detailed information
                 <a href="/info.html#cant-login">here.</a></div>
-        <div>
         <div x-show="rotationKeysToAdd.length > 0">
-            <p>Here are your rotation keys. Keep them safe!</p>
+            <p>Your rotation keys can be used to restore access to your account in case anything ever happens to Northsky! 
+                <strong>You should treat this key like a password</strong> and store it somewhere safe.</p>
             <p><strong>Public Key:</strong> <code x-text="rotationKeysToAdd[0]?.publicKey"></code></p>
             <p><strong>Private Key:</strong> <code x-text="rotationKeysToAdd[0]?.privateKey"></code></p>
         </div>
