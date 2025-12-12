@@ -292,9 +292,17 @@
                 <a href="/info.html#cant-login">here.</a></div>
         <div x-show="rotationKeysToAdd.length > 0">
             <p>Your rotation keys can be used to restore access to your account in case anything ever happens to Northsky! 
-                <strong>You should treat this key like a password</strong> and store it somewhere safe.</p>
-            <p><strong>Public Key:</strong> <code x-text="rotationKeysToAdd[0]?.publicKey"></code></p>
-            <p><strong>Private Key:</strong> <code x-text="rotationKeysToAdd[0]?.privateKey"></code></p>
+                <strong>You should treat these keys like a password</strong> and store it somewhere safe.</p>
+            <p>
+                <strong>Public Key:</strong> 
+                <code x-text="rotationKeysToAdd[0]?.publicKey"></code>
+                <button type="button" @click="navigator.clipboard.writeText(rotationKeysToAdd[0]?.publicKey)" style="margin-left: 8px;">Copy</button>
+            </p>
+            <p>
+                <strong>Private Key:</strong> 
+                <code x-text="rotationKeysToAdd[0]?.privateKey"></code>
+                <button type="button" @click="navigator.clipboard.writeText(rotationKeysToAdd[0]?.privateKey)" style="margin-left: 8px;">Copy</button>
+            </p>
         </div>
     </div>
     <footer>
