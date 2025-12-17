@@ -11,9 +11,10 @@
     <script src="https://unpkg.com/alpinejs" defer></script>
 
     <script type="module">
-        import {Migrator} from './src/main.js';
+        import {Migrator, PlcOps} from './src/main.js';
 
         window.Migrator = new Migrator();
+        window.plcOps = new PlcOps();
     </script>
 
     <script>
@@ -43,6 +44,8 @@
                 migrateMissingBlobs: true,
                 migratePrefs: true,
                 migratePlcRecord: true,
+                generateRotationKey: true,
+                rotationKeysToAdd: [],
                 toggleAdvanceMenu() {
                     this.showAdvance = !this.showAdvance;
                 },
@@ -60,7 +63,8 @@
                         newPds: this.newPds,
                         newEmail: this.newEmail,
                         newHandle: this.newHandle,
-                        inviteCode: this.inviteCode
+                        inviteCode: this.inviteCode,
+                        generateRotationKey: this.generateRotationKey,
                     })
                     try {
 
@@ -79,8 +83,16 @@
                         window.Migrator.migrateMissingBlobs = this.migrateMissingBlobs;
                         window.Migrator.migratePrefs = this.migratePrefs;
                         window.Migrator.migratePlcRecord = this.migratePlcRecord;
+                        window.Migrator.generateRotationKey = this.generateRotationKey;
                         this.updateStatusHandler('Starting migration...');
                         this.showStatusMessage = true;
+
+                        if (this.generateRotationKey) {
+                            createdRotationKeys = await plcOps.createANewSecp256k1();
+                            console.log("Created rotation keys");
+                            this.rotationKeysToAdd.push(createdRotationKeys);
+                        }
+                        
                         await window.Migrator.migrate(
                             this.handle,
                             this.password,
@@ -107,7 +119,8 @@
                 async signPlcOperation() {
                     try {
                         this.plcStatus = 'Signing PLC operation...';
-                        await window.Migrator.signPlcOperation(this.plcToken);
+                        this.publicRotationKeys = this.rotationKeysToAdd.map(keyPair => keyPair.publicKey);
+                        await window.Migrator.signPlcOperation(this.plcToken, this.publicRotationKeys);
                         this.plcStatus = 'PLC operation signed successfully! Your account has been migrated to the new PDS.';
                         this.done = true;
                         // this.askForPlcToken = false;
@@ -134,7 +147,7 @@
     <h2>The Northsky Social team welcomes you to join us in safer skies.</h2>
     
     <a href="/info.html">Learn more about account migrations</a>
-    <form x-show="!askForPlcToken" id="moover-form" @submit.prevent="await handleSubmit()">
+    <form x-show="!askForPlcToken && !done" id="moover-form" @submit.prevent="await handleSubmit()">
         <!-- First section: Login credentials -->
         <div class="section">
             <h2>Login for your current PDS</h2>
@@ -176,6 +189,12 @@
                 <label for="invite-code">Invite Code:</label>
                 <input type="text" id="invite-code" name="invite-code" placeholder="Enter your invite code"
                        x-model="inviteCode" required>
+            </div>
+            <div class="form-control">
+                <label>
+                    <input type="checkbox" id="generateRotationKey" name="generateRotationKey" x-model="generateRotationKey">
+                    Generate PLC rotation key (recovery key)
+                </label>
             </div>
         </div>
         <div class="form-group">
@@ -254,22 +273,37 @@
             <button type="submit">Start Migration</button>
         </div>
     </form>
-    <div x-show="askForPlcToken" class="section">
+    <div x-show="askForPlcToken && !done" class="section">
+        <h2>Please enter the PLC Token you received in an email</h2>
         <form @submit.prevent="await signPlcOperation()">
-            <h2>Please enter your PLC Token you received in an email</h2>
             <div class="form-group">
                 <label for="plc-token">PLC Token:</label>
                 <input type="text" id="plc-token" name="plc-token" x-model="plcToken" required>
             </div>
             <div x-show="error" x-text="error" class="error-message"></div>
             <div x-show="plcStatus" x-text="plcStatus" class="status-message"></div>
-            <div x-show="done" class="status-message">Congratulations! You have successfully migrated to a new PDS! Remember to use
-                your new PDS URL under "Hosting provider" when logging in on Bluesky. Can find more detail information
-                <a href="/info.html#cant-login">here.</a></div>
-            <div>
                 <button type="submit">Sign the papers</button>
             </div>
         </form>
+    <div x-show="done" class="section">
+        <h2>Migration Complete!</h2>
+        <div class="status-message">Congratulations! You have successfully migrated to Northsky Social! 
+            Remember to use https://northsky.social under "Hosting provider" when logging in on Bluesky. You can find more detailed information
+                <a href="/info.html#cant-login">here.</a></div>
+        <div x-show="rotationKeysToAdd.length > 0">
+            <p>Your rotation keys can be used to restore access to your account in case anything ever happens to Northsky! 
+                <strong>You should treat these keys like a password</strong> and store it somewhere safe.</p>
+            <p>
+                <strong>Public Key:</strong> 
+                <code x-text="rotationKeysToAdd[0]?.publicKey"></code>
+                <button type="button" @click="navigator.clipboard.writeText(rotationKeysToAdd[0]?.publicKey)" style="margin-left: 8px;">Copy</button>
+            </p>
+            <p>
+                <strong>Private Key:</strong> 
+                <code x-text="rotationKeysToAdd[0]?.privateKey"></code>
+                <button type="button" @click="navigator.clipboard.writeText(rotationKeysToAdd[0]?.privateKey)" style="margin-left: 8px;">Copy</button>
+            </p>
+        </div>
     </div>
     <footer>
         <div class="made-by-blur">
